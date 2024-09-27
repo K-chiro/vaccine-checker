@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ワクチン接種管理</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='vaccine.css', v=time.time()) }}">
+  <script src="{{ url_for('static', filename='vaccine.js') }}"></script>
+
+</head>
+<body>
+  <header class="header">
+    <div class="title-bar">
+      <h2>ワクチン接種管理（0歳~2歳用）</h2>
+    </div>
+  </header>
+
+  <form id="vaccine-form">
+    <div>
+      <label for="vaccination-date"><接種日></label>
+      <input type="date" id="vaccination-date" name="vaccination-date">
+    </div>
+    <div>
+      <label for="birthdate"><生年月日></label>
+      <input type="date" id="birthdate" name="birthdate">
+      <span id="error-birthdate" class="error-message"></span>
+    </div>
+
+    <div class="select-vaccines" id="select-vaccines">
+      <label for="select-vacctine"><接種ワクチン></label>
+      <div id="vaccine-entry">
+        <div class="vaccine-row">
+          <select id="select-vacctine" name="select-vacctine">
+            <option value="none">選択してください</option>
+          </select>
+      
+          <div class="select-vacctine-counts">
+            <select id="select-vacctine-counts" name="select-vacctine-counts">
+              <option value="none">選択してください</option>
+            </select>
+            <span>回目</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" id="add-vaccine">＋</button>
+    <button type="submit">送信</button>
+  </form>
+
+  <!-- 結果表示エリア -->
+  <div class="result" id="result" >
+    <div id="checklist-container"></div>
+    <div id="warninglist-container"></div>
+    <div id="attendtable-container"></div>
+  </div>
+
+  <script>
+    const dataUrl = "{{ url_for('static', filename='DATA.json') }}";
+
+    // フォームの送信を非同期で処理
+    document.getElementById('vaccine-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+
+      const formData = new FormData(this);
+      
+      /*fetch('/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          // エラーがある場合はエラーメッセージを表示
+          document.getElementById('result').innerHTML = `<p style="color: red;">${data.error}</p>`;
+        } else {
+          // 正常に処理された場合は結果を表示
+          document.getElementById('result').innerHTML = `<p>${data.message}</p>`;
+        }
+      })
+      .catch(error => {
+        document.getElementById('result').innerHTML = `<p style="color: red;">エラーが発生しました。</p>`;
+      });*/
+    });
+  </script>
+</body>
+</html>

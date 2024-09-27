@@ -1,0 +1,203 @@
+/* ベースのスタイル */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.header {
+  background-color: #4CAF50;
+  padding: 15px;
+  color: white;
+  text-align: center;
+}
+
+.title-bar h2 {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+form {
+  background-color: white;
+  padding: 25px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 1000px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 150px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+input[type="date"],
+select {
+  padding: 10px;
+  width: 60%;
+  max-width: 300px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1.2em;
+}
+
+.vaccine-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* スタートに揃える */
+  gap: 10px; /* セレクトボックスと「回目」の間に適切なスペースを確保 */
+  width: auto; /* 幅の自動調整 */
+  max-width: 500px;
+}
+
+.select-vacctine-counts {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* 「回目」とセレクトボックスの間にスペースを追加 */
+}
+
+.select-vacctine-counts select {
+  margin-right: 5px;
+  width: auto;
+}
+
+span {
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline;
+}
+
+/* 送信ボタン */
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-top: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* 送信ボタンを中央に配置 */
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+/* チェックリストコンテナ */
+#checklist-container div {
+  display: flex;
+  align-items: center;
+  margin-bottom: auto;
+}
+
+#checklist-container input[type="checkbox"] {
+  margin-right: 10px;  /* チェックボックスとラベルの間にスペースを追加 */
+}
+
+#checklist-container label {
+  font-size: 1em;
+  color: #333;
+  width: auto;
+}
+.wrap {
+  word-wrap: break-word; /* 長い単語でも強制的に折り返す */
+  white-space: normal; /* 通常の折り返しにする */
+}
+
+#checklist-container {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;  
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 1000px;
+}
+
+@media (max-width: 768px) {
+  #checklist-container {
+      padding: 10px;
+      font-size: 12px;
+  }
+
+  #checklist-container input[type="checkbox"] {
+      transform: scale(1.2);  /* 小さな画面では少し小さめに */
+  }
+}
+
+/* 表のスタイル */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 18px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+thead {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+
+  /* 警告メッセージのスタイル */
+  .warning-message {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #ffe6e6;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ff0000;
+    border-radius: 5px;
+  }
+
+
+
+/* エラーメッセージ */
+#error-birthdate {
+  color: red;
+  font-size: 0.9em;
+}
+
+/* +ボタンのスタイル */
+button#add-vaccine {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+button#add-vaccine:hover {
+  background-color: #45a049;
+}

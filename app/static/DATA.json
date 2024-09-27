@@ -1,0 +1,56 @@
+{
+  "B型肝炎": {
+      "vaccine-type": "inactive",
+      "max-counts": 3,
+      "start": "0",
+      "end": "12m"
+  },
+  "ロタウイルス(1価)": {
+      "vaccine-type": "live-drink",
+      "max-counts": 2,
+      "start": "6w",
+      "end": "24w"
+  },
+  "ロタウイルス(5価)": {
+      "vaccine-type": "live-drink",
+      "max-counts": 3,
+      "start": "6w",
+      "end": "32w"
+  },
+  "小児用肺炎球菌": {
+      "vaccine-type": "inactive",
+      "max-counts": 4,
+      "start": "2m",
+      "end": "60m"
+  },
+  "五種混合": {
+      "vaccine-type": "inactive",
+      "max-counts": 4,
+      "start": "2m",
+      "end": "90m"
+  },
+  "BCG": {
+      "vaccine-type": "live",
+      "max-counts": 1,
+      "start": "0",
+      "end": "12m"
+  },
+  "MR(麻疹風疹混合)": {
+      "vaccine-type": "live",
+      "max-counts": 2,
+      "start": "12m",
+      "end": "24m"
+  },
+  "水痘(みずぼうそう)": {
+      "vaccine-type": "live",
+      "max-counts": 2,
+      "start": "12m",
+      "end": "36m"
+  },
+  "おたふくかぜ":{
+    "vaccine-type":"live",
+    "max-counts":2,
+    "start":"-",
+    "end":"-"
+  }
+}
