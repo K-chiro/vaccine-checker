@@ -4,12 +4,15 @@ import time
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 import pandas as pd
+import os
 
 
 app = Flask(__name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # ワクチンデータをロード
-with open('app/static/DATA.json', 'r') as f:
+with open(os.path.join(BASE_DIR, 'static', 'DATA.json'), 'r') as f:
     vaccines = json.load(f)
 
 # ルートページ（HTMLフォーム）を表示
