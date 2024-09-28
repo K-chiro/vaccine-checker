@@ -14,38 +14,41 @@
       <h2>ワクチン接種管理（0歳~2歳用）</h2>
     </div>
   </header>
-
-  <form id="vaccine-form">
-    <div>
-      <label for="vaccination-date"><接種日></label>
-      <input type="date" id="vaccination-date" name="vaccination-date">
-    </div>
-    <div>
-      <label for="birthdate"><生年月日></label>
-      <input type="date" id="birthdate" name="birthdate">
-      <span id="error-birthdate" class="error-message"></span>
-    </div>
-
-    <div class="select-vaccines" id="select-vaccines">
-      <label for="select-vacctine"><接種ワクチン></label>
-      <div id="vaccine-entry">
-        <div class="vaccine-row">
-          <select id="select-vacctine" name="select-vacctine">
-            <option value="none">選択してください</option>
-          </select>
-      
-          <div class="select-vacctine-counts">
-            <select id="select-vacctine-counts" name="select-vacctine-counts">
-              <option value="none">選択してください</option>
-            </select>
-            <span>回目</span>
-          </div>
-        </div>
+  <div id="form-container">
+    <form id="vaccine-form">
+      <div>
+        <label for="vaccination-date"><接種日></label>
+        <input type="date" id="vaccination-date" name="vaccination-date">
       </div>
-    </div>
-    <button type="button" id="add-vaccine">＋</button>
-    <button type="submit">送信</button>
-  </form>
+      <div>
+        <label for="birthdate"><生年月日></label>
+        <input type="date" id="birthdate" name="birthdate">
+        <span id="error-birthdate" class="error-message"></span>
+      </div>
+
+      <div class="select-vaccines" id="select-vaccines">
+        <label for="entries"><接種ワクチン></label>
+        <ul class="entries" id="entries">
+          <li id="vaccine-entry" class="vaccine-entry">
+            <div class="vaccine-row">
+              <select id="select-vaccine-1">
+                <option value="none">選択してください</option>
+              </select>
+          
+              <div class="select-vaccine-counts">
+                <select id="select-vaccine-counts-1">
+                  <option value="none">選択してください</option>
+                </select>
+                <span>回目</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <button type="button" id="add-vaccine">＋</button>
+      <button type="submit">送信</button>
+    </form>
+  </div>
 
   <!-- 結果表示エリア -->
   <div class="result" id="result" >

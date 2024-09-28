@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const vaccineSelect = document.getElementById('select-vacctine');
-  const dosesSelect = document.getElementById('select-vacctine-counts');
+  const vaccineSelect = document.getElementById('select-vaccine-1');
+  const dosesSelect = document.getElementById('select-vaccine-counts-1');
   const vaccineEntry = document.getElementById("vaccine-entry");
   const birthdateInput = document.getElementById("birthdate");
   const vaccinationDateInput = document.getElementById("vaccination-date");
   let vaccines = {};
-  let selectedVaccine = "none";
+  let entryCount = 1;
 
   // JSONファイルを読み込み
   fetch(dataUrl)
@@ -63,13 +63,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 新しいエントリーを追加し、イベントリスナーを設定
   document.getElementById("add-vaccine").addEventListener("click", function() {
+    entryCount += 1
     const newEntry = vaccineEntry.cloneNode(true);
-    const parent = document.getElementById("select-vaccines");
+    const parent = document.getElementById("entries");
+    newEntry.id = "vaccine-entry-" + entryCount;
     parent.appendChild(newEntry);
 
     // クローンされたエントリーの中の要素を取得
-    const newVaccineSelect = newEntry.querySelector('#select-vacctine');
-    const newDosesSelect = newEntry.querySelector('#select-vacctine-counts');
+    const newVaccineSelect = newEntry.querySelector(`#select-vaccine-1`);
+    const newDosesSelect = newEntry.querySelector(`#select-vaccine-counts-1`);
+    newVaccineSelect.id = 'select-vaccine-' + entryCount;
+    newDosesSelect.id = 'select-vaccine-counts-' + entryCount;
+
+    
 
     // クローンされたエントリーにもイベントリスナーを設定
     newVaccineSelect.addEventListener('change', function () {
@@ -82,11 +88,11 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault(); // デフォルトのフォーム送信を防ぐ
     // ワクチンと回数のデータを取得するディクショナリを作成
     const vaccineData = {};
-    const entries = document.querySelectorAll('#select-vaccines .vaccine-row');
+    const inputEntries = document.querySelectorAll('#select-vaccines .vaccine-row');
  
-    entries.forEach(entry => {
-      const vaccineSelect = entry.querySelector('#select-vacctine').value;
-      const dosesSelect = entry.querySelector('#select-vacctine-counts').value;
+    inputEntries.forEach((inputEntry, index) => {
+      const vaccineSelect = inputEntry.querySelector(`#select-vaccine-${index + 1}`).value;
+      const dosesSelect = inputEntry.querySelector(`#select-vaccine-counts-${index + 1}`).value;
       if (vaccineSelect !== 'none' && dosesSelect !== 'none') {
         vaccineData[vaccineSelect] = dosesSelect;  // ワクチン名をキー、接種回数を値として格納
       }

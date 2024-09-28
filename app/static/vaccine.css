@@ -6,26 +6,8 @@ body {
   background-color: #f4f4f4;
 }
 
-.header {
-  background-color: #4CAF50;
-  padding: 15px;
-  color: white;
-  text-align: center;
-}
-
-.title-bar h2 {
-  margin: 0;
-  font-size: 1.8em;
-}
-
 form {
-  background-color: white;
-  padding: 25px;
-  margin: 20px auto;
   width: 80%;
-  max-width: 1000px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
 }
 
 label {
@@ -33,6 +15,17 @@ label {
   width: 150px;
   font-weight: bold;
   margin-bottom: 15px;
+}
+
+ul {
+  list-style-position: outside; /* マーカーを内側に配置 */
+  padding-left: 30px;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: disc; /* 箇条書きの点を表示 */
 }
 
 input[type="date"],
@@ -47,31 +40,44 @@ select {
   font-size: 1.2em;
 }
 
-.vaccine-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; /* スタートに揃える */
-  gap: 10px; /* セレクトボックスと「回目」の間に適切なスペースを確保 */
-  width: auto; /* 幅の自動調整 */
-  max-width: 500px;
+.header {
+  background-color: #4CAF50;
+  padding: 15px;
+  color: white;
+  text-align: center;
 }
 
-.select-vacctine-counts {
-  display: flex;
-  align-items: center;
-  gap: 5px; /* 「回目」とセレクトボックスの間にスペースを追加 */
+.title-bar h2 {
+  margin: 0;
+  font-size: 1.8em;
 }
 
-.select-vacctine-counts select {
-  margin-right: 5px;
+#form-container{
+  display: flex;
+  background-color: white;
+  padding: 25px;
+  margin: 20px auto;
+  width: 80%;
+  max-width: 1000px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  justify-content: center;
+}
+
+.select-vaccine-counts{
+  width: 300px;
+  padding-left: 5px;
+  padding-right: 5px;
+  align-items: center;     /* 垂直方向に中央揃え */
+}
+
+.select-vaccine-counts select{
   width: auto;
 }
 
-span {
+.select-vaccine-counts span{
   font-weight: bold;
-  margin-left: 5px;
-  margin-right: 5px;
-  display: inline;
+  padding-left: 5px;
 }
 
 /* 送信ボタン */
@@ -126,14 +132,49 @@ button[type="submit"]:hover {
   max-width: 1000px;
 }
 
+/* モバイル対応スタイル */
 @media (max-width: 768px) {
+  form {
+    width: 95%;
+    padding: 15px;
+    margin: 10px auto;
+  }
+
+  label {
+    width: 100%; /* ラベルを全幅に */
+    margin-bottom: 5px;
+  }
+
+  input[type="date"],
+  select {
+    width: 100%; /* 入力フィールドを全幅に */
+    font-size: 1em;
+  }
+
+  .vaccine-row {
+    flex-direction: column; /* モバイルでは縦方向に並べる */
+    align-items: flex-start;
+    gap: 5px;
+    width: 100%;
+  }
+
+  button[type="submit"] {
+    font-size: 1em;
+    padding: 10px 20px;
+    width: 100%;
+  }
+
   #checklist-container {
-      padding: 10px;
-      font-size: 12px;
+    width: 95%; /* モバイルで幅を調整 */
+    padding: 10px;
   }
 
   #checklist-container input[type="checkbox"] {
-      transform: scale(1.2);  /* 小さな画面では少し小さめに */
+    transform: scale(1.2);  /* 小さな画面では少し小さめに */
+  }
+
+  table {
+    font-size: 14px; /* 表のフォントサイズを小さくする */
   }
 }
 
@@ -165,20 +206,17 @@ tr:hover {
   background-color: #f1f1f1;
 }
 
-
-  /* 警告メッセージのスタイル */
-  .warning-message {
-    color: #ff0000;
-    font-weight: bold;
-    font-size: 18px;
-    background-color: #ffe6e6;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ff0000;
-    border-radius: 5px;
-  }
-
-
+/* 警告メッセージのスタイル */
+.warning-message {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #ffe6e6;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ff0000;
+  border-radius: 5px;
+}
 
 /* エラーメッセージ */
 #error-birthdate {
