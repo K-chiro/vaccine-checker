@@ -52,8 +52,12 @@
 
   <!-- 結果表示エリア -->
   <div class="result" id="result" >
-    <div id="checklist-container"></div>
-    <div id="warninglist-container"></div>
+    <div id="checklist-container">
+      <label><確認事項></label>
+    </div>
+    <div id="warninglist-container">
+      <label>気をつけてね！</label>
+    </div>
     <div id="attendtable-container"></div>
   </div>
 
@@ -65,24 +69,7 @@
       event.preventDefault(); // デフォルトのフォーム送信を防ぐ
 
       const formData = new FormData(this);
-      
-      /*fetch('/submit', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.error) {
-          // エラーがある場合はエラーメッセージを表示
-          document.getElementById('result').innerHTML = `<p style="color: red;">${data.error}</p>`;
-        } else {
-          // 正常に処理された場合は結果を表示
-          document.getElementById('result').innerHTML = `<p>${data.message}</p>`;
-        }
-      })
-      .catch(error => {
-        document.getElementById('result').innerHTML = `<p style="color: red;">エラーが発生しました。</p>`;
-      });*/
+
     });
   </script>
 </body>

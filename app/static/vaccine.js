@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const newEntry = vaccineEntry.cloneNode(true);
     const parent = document.getElementById("entries");
     newEntry.id = "vaccine-entry-" + entryCount;
-    parent.appendChild(newEntry);
 
     // クローンされたエントリーの中の要素を取得
     const newVaccineSelect = newEntry.querySelector(`#select-vaccine-1`);
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
     newVaccineSelect.id = 'select-vaccine-' + entryCount;
     newDosesSelect.id = 'select-vaccine-counts-' + entryCount;
 
-    
+    parent.appendChild(newEntry);
 
     // クローンされたエントリーにもイベントリスナーを設定
     newVaccineSelect.addEventListener('change', function () {
@@ -109,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //受信したJSON（check_list）を処理する関数
       // チェックボックス生成関数
     function generateCheckListHTML(checkList) {
-      let checklistHTML = '';
+      let checklistHTML = '<label id=checklist-label><確認事項></label>';
       checkList.forEach((item, index) => {
         checklistHTML += `
           <div>
@@ -122,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function generateWarningListHTML(warningList){
-      let warninglistHTML = '';
+      let warninglistHTML = '<label id=warning-label>>>> 注意 <<<</label>';
       warningList.forEach((item, index) => {
         warninglistHTML += `<p class="warning-message">${item}</p>`;
       });
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function generateAttendTableHTML(attend_json) {
       let attendtableHTML = "\
-              <label id='table-label'>次回接種案内</label>\
+              <label id='table-label'><次回接種案内></label>\
               <table border='1'><thead><tr><th>ワクチン名</th><th>回数</th><th>接種時期</th></tr></thead><tbody>";
       // JSONデータをループして、各行のHTMLを作成
       attend_json.forEach(function(item) {
@@ -157,26 +156,55 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.json())
     .then(data => {
       if (data.error) {
-        document.getElementById('result').innerHTML = `<p style="color: red;">${data.error}</p>`;
+        const resultDiv = document.getElementById('result');
+        document.getElementById('result').innerHTML = `<p style="color: red; font-weight: bold;">${data.error}</p>`;
+        resultDiv.style.display = 'flex';
       } else {
+        const resultDiv = document.getElementById('result');
+
         // 表示するHTML要素
         const checkListContainer = document.getElementById('checklist-container');
         const warningListContainer = document.getElementById("warninglist-container");
         const attendTableContainer = document.getElementById("attendtable-container");
+
+        checkListContainer.innerHTML = '';  // チェックリストコンテナをリセット
+        warningListContainer.innerHTML = '';  // 警告リストコンテナをリセット
+        attendTableContainer.innerHTML = '';  // 接種スケジュールコンテナをリセット
 
         // 要素生成関数を呼び出す
         const checkListHTML = generateCheckListHTML(data.check_list);
         const warningListHTML = generateWarningListHTML(data.warning_list);
         const attendTableHTML = generateAttendTableHTML(data.attend_json);
 
-        // 生成したHTMLをDOMに挿入
-        checkListContainer.innerHTML = checkListHTML;
-        warningListContainer.innerHTML = warningListHTML;
-        attendTableContainer.innerHTML = attendTableHTML;
+        // check_listが存在する場合のみ表示
+        if (data.check_list && data.check_list.length > 0) {
+          checkListContainer.innerHTML += checkListHTML;
+          checkListContainer.style.display = 'block'; // データがある場合は表示
+        }
+
+        // warning_listが存在する場合のみ表示
+        if (data.warning_list && data.warning_list.length > 0) {
+          warningListContainer.innerHTML += warningListHTML;
+          warningListContainer.style.display = 'block'; // データがある場合は表示
+        }
+
+        // attend_jsonが存在する場合のみ表示
+        if (data.attend_json && data.attend_json.length > 0) {
+          attendTableContainer.innerHTML += attendTableHTML;
+          attendTableContainer.style.display = 'block'; // データがある場合は表示
+        }
+
+        resultDiv.style.display = "block";
+
+
+
       }
     })
     .catch(error => {
-      document.getElementById('result').innerHTML = `<p style="color: red;">エラーが発生しました。</p>`;
+      const resultDiv = document.getElementById('result');
+      document.getElementById('result').innerHTML = `<p style="color: red; font-weight:bold;">エラーが発生しました。リロードしてやり直してください。</p>`;
+      resultDiv.style.display = 'flex';
+
     });
   });
 });

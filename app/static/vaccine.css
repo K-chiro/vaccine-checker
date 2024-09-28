@@ -14,7 +14,6 @@ label {
   display: inline-block;
   width: 150px;
   font-weight: bold;
-  margin-bottom: 15px;
 }
 
 ul {
@@ -40,6 +39,14 @@ select {
   font-size: 1.2em;
 }
 
+#result {
+  display: none; /* 初期は非表示 */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .header {
   background-color: #4CAF50;
   padding: 15px;
@@ -62,6 +69,10 @@ select {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   justify-content: center;
+}
+
+.vaccine-row {
+  display: flex;
 }
 
 .select-vaccine-counts{
@@ -100,12 +111,6 @@ button[type="submit"]:hover {
 }
 
 /* チェックリストコンテナ */
-#checklist-container div {
-  display: flex;
-  align-items: center;
-  margin-bottom: auto;
-}
-
 #checklist-container input[type="checkbox"] {
   margin-right: 10px;  /* チェックボックスとラベルの間にスペースを追加 */
 }
@@ -121,13 +126,12 @@ button[type="submit"]:hover {
 }
 
 #checklist-container {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: white;  
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
+  display: none;
+  padding: 25px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  margin: 20px auto;
   width: 80%;
   max-width: 1000px;
 }
@@ -218,10 +222,8 @@ tr:hover {
   border-radius: 5px;
 }
 
-/* エラーメッセージ */
-#error-birthdate {
-  color: red;
-  font-size: 0.9em;
+#warning-label{
+  width: auto;
 }
 
 /* +ボタンのスタイル */
