@@ -1,4 +1,4 @@
-## Vaccine-Project.pdf に開発目的や機能詳細が記載されています。
+## [Vaccine-Project.pdf](https://github.com/K-chiro/vaccine-checker?tab=readme-ov-file#readme:~:text=yesterday-,README.md,-Vol.1(2024) に開発目的や機能詳細が記載されています。
  AppURL -> https://vaccine-checker.onrender.com
  (起動に1分程度かかる場合があります。)
 
