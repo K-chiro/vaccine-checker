@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // フォームの非同期送信
   document.getElementById('vaccine-form').addEventListener('submit', function(event) {
     event.preventDefault(); // デフォルトのフォーム送信を防ぐ
+
     // ワクチンと回数のデータを取得するディクショナリを作成
     const vaccineData = {};
     const inputEntries = document.querySelectorAll('#select-vaccines .vaccine-row');
@@ -111,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
       let checklistHTML = '<label id=checklist-label><確認事項></label>';
       checkList.forEach((item, index) => {
         checklistHTML += `
-          <div>
+          <div class="checklist-row">
             <input type="checkbox" id="check${index}" name="check${index}">
             <label for="check${index}">${item}</label>
           </div>
@@ -180,18 +181,25 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.check_list && data.check_list.length > 0) {
           checkListContainer.innerHTML += checkListHTML;
           checkListContainer.style.display = 'block'; // データがある場合は表示
+        } else {
+          checkListContainer.style.display = 'none'; // 非表示
+
         }
 
         // warning_listが存在する場合のみ表示
         if (data.warning_list && data.warning_list.length > 0) {
           warningListContainer.innerHTML += warningListHTML;
           warningListContainer.style.display = 'block'; // データがある場合は表示
+        } else {
+          warningListContainer.style.display = "none";
         }
 
         // attend_jsonが存在する場合のみ表示
         if (data.attend_json && data.attend_json.length > 0) {
           attendTableContainer.innerHTML += attendTableHTML;
           attendTableContainer.style.display = 'block'; // データがある場合は表示
+        } else {
+          attendTableContainer.style.display = "none";
         }
 
         resultDiv.style.display = "block";
@@ -201,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     })
     .catch(error => {
-      const resultDiv = document.getElementById('result');
+      const resultDiv = document.getElementById('result'); 
       document.getElementById('result').innerHTML = `<p style="color: red; font-weight:bold;">エラーが発生しました。リロードしてやり直してください。</p>`;
       resultDiv.style.display = 'flex';
 

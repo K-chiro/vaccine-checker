@@ -129,7 +129,6 @@ def make_list(vaccine_date, birthdate, vaccine_data):
     formatted_date_18_months_later = (vaccine_date + relativedelta(months=18)).strftime("%Y/%m/%d")
 
 
-
     #確認メッセージを作成
     check_list = []
     warning_list = []
@@ -243,6 +242,8 @@ def make_list(vaccine_date, birthdate, vaccine_data):
         elif vaccine_data[pentavalent_vaccine] == "2":
             attend_dic[pentavalent_vaccine] = ["3回目", f"{formatted_date_3_weeks_later} 〜 {formatted_date_8_weeks_later}"]
         elif vaccine_data[pentavalent_vaccine] == "3":
+            attend_dic[pentavalent_vaccine] = ["4回目", f"{formatted_date_6_months_later} 以降(推奨：{formatted_date_6_months_later} 〜 {formatted_date_18_months_later} かつ 1歳以上)"]
+        elif vaccine_data[pentavalent_vaccine] == "4":
             attend_dic[pentavalent_vaccine] = ["完了", "-"]
 
     if bcg_vaccine in vaccine_data.keys():

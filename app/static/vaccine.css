@@ -39,12 +39,12 @@ select {
   font-size: 1.2em;
 }
 
-#result {
-  display: none; /* 初期は非表示 */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+/* form内のsubmitボタン以外にmargin-leftを適用 */
+form > *:not(button[type="submit"]) {
+  margin-left: 10%; /* ここで希望する余白を指定 */
+  margin-right: 5%;
 }
+
 
 
 .header {
@@ -57,6 +57,11 @@ select {
 .title-bar h2 {
   margin: 0;
   font-size: 1.8em;
+}
+
+.wrap {
+  word-wrap: break-word; /* 長い単語でも強制的に折り返す */
+  white-space: normal; /* 通常の折り返しにする */
 }
 
 #form-container{
@@ -80,6 +85,7 @@ select {
   padding-left: 5px;
   padding-right: 5px;
   align-items: center;     /* 垂直方向に中央揃え */
+  white-space: nowrap; /* 折り返しを防ぐ */
 }
 
 .select-vaccine-counts select{
@@ -89,6 +95,7 @@ select {
 .select-vaccine-counts span{
   font-weight: bold;
   padding-left: 5px;
+
 }
 
 /* 送信ボタン */
@@ -110,8 +117,19 @@ button[type="submit"]:hover {
   background-color: #45a049;
 }
 
+/*resultの幅を設定*/
+.result {
+  display: flex;
+  margin: 20px auto;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 1050px;
+}
+
 /* チェックリストコンテナ */
 #checklist-container input[type="checkbox"] {
+  margin-top: 5px;
   margin-right: 10px;  /* チェックボックスとラベルの間にスペースを追加 */
 }
 
@@ -119,21 +137,109 @@ button[type="submit"]:hover {
   font-size: 1em;
   color: #333;
   width: auto;
+  word-wrap: break-word;
 }
-.wrap {
-  word-wrap: break-word; /* 長い単語でも強制的に折り返す */
-  white-space: normal; /* 通常の折り返しにする */
+
+.checklist-row{
+  display: flex;
+  align-items: flex-start; /* 垂直方向の揃え方を調整 */
+}
+
+#checklist-label {
+  margin-bottom: 5px;
 }
 
 #checklist-container {
   display: none;
   padding: 25px;
+  margin-top: 20px;
   border-radius: 10px;
   background-color: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  margin: 20px auto;
-  width: 80%;
-  max-width: 1000px;
+}
+
+/* 警告メッセージのスタイル */
+#warninglist-container{
+  display:none;
+  background-color: #ffe6e6;
+  border: 1px solid #ff0000;
+  border-radius: 10px;
+  color: #ff0000;
+  font-weight: bold;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-top: 20px;
+}
+
+#warning-label{
+  margin-top: 15px;
+  width: auto;
+}
+
+/* 表全体のスタイル */
+#attendtable-container {
+  margin-top: 20px;
+}
+
+#table-label {
+  margin-bottom: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* セル間の隙間をなくす */
+  margin-bottom: 40px;
+  font-size: 18px;
+  text-align: left;
+  border: 1px solid #ddd; /* 表全体の外枠を設定 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 軽い影を付ける */
+  border-radius: 8px; /* 角を丸める */
+  overflow: hidden; /* 丸い角に合わせて内容を切り取る */
+}
+
+/* ヘッダー部分のスタイル */
+thead {
+  background-color: #4CAF50; /* ヘッダーに目立つ背景色 */
+  color: white; /* ヘッダーの文字色を白に */
+  font-weight: bold; /* ヘッダーの文字を太く */
+}
+
+th, td {
+  padding: 12px 15px; /* セル内に余白を持たせる */
+  border-bottom: 1px solid #ddd; /* 行ごとの区切り線 */
+}
+
+/* 偶数行の背景色を変える（ゼブラストライプ） */
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* 偶数行に薄い背景色を設定 */
+}
+
+/* 奇数行にホバーしたときの色 */
+tr:not(:first-child):hover {
+  background-color: #f1f1f1; /* マウスホバー時に背景色を変える */
+}
+
+/* セル内のテキストを中央揃えに */
+th, td {
+  text-align: center;
+}
+
+
+/* +ボタンのスタイル */
+button#add-vaccine {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+button#add-vaccine:hover {
+  background-color: #45a049;
 }
 
 /* モバイル対応スタイル */
@@ -180,64 +286,4 @@ button[type="submit"]:hover {
   table {
     font-size: 14px; /* 表のフォントサイズを小さくする */
   }
-}
-
-/* 表のスタイル */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
-  font-size: 18px;
-  text-align: left;
-  border: 1px solid #ddd;
-}
-
-thead {
-  background-color: #f7f7f7;
-  font-weight: bold;
-}
-
-th, td {
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* 警告メッセージのスタイル */
-.warning-message {
-  color: #ff0000;
-  font-weight: bold;
-  font-size: 18px;
-  background-color: #ffe6e6;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ff0000;
-  border-radius: 5px;
-}
-
-#warning-label{
-  width: auto;
-}
-
-/* +ボタンのスタイル */
-button#add-vaccine {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.2em;
-  margin-bottom: 15px;
-}
-
-button#add-vaccine:hover {
-  background-color: #45a049;
 }
